@@ -72,7 +72,7 @@ import java.io.IOException;
                 {
                     game.outputResults();
                     game.resetBoard();
-                    game.write_to_file("C:\\Users\\Owner\\Desktop\\CS-CLASSES\\CSC 214\\TIC TAC TOE\\Submission_2\\Game_Results_Save.txt");
+                    game.write_to_file(" WRITE THE PATH FILE HERE");
                     System.out.println("Game Results Saved to file.");
 
                     System.out.print("Do you want to see the past games? (Y/N): ");
