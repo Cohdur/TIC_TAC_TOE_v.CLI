@@ -58,10 +58,12 @@ public class Game extends Player
         }
     }
 
-    void saveGameResult() {
+    void saveGameResult() 
+    {
         // Create a deep copy of the board
         char[][] boardCopy = new char[ROW][COL];
-        for (int i = 0; i < ROW; i++) {
+        for (int i = 0; i < ROW; i++) 
+        {
             System.arraycopy(board[i], 0, boardCopy[i], 0, COL);
         }
     
