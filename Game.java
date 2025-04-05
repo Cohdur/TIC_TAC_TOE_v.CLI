@@ -60,14 +60,13 @@ public class Game extends Player
 
     void saveGameResult() 
     {
-        // Create a deep copy of the board
+        
         char[][] boardCopy = new char[ROW][COL];
         for (int i = 0; i < ROW; i++) 
         {
             System.arraycopy(board[i], 0, boardCopy[i], 0, COL);
         }
     
-        // Add the deep copy to the pastGames list
         pastGames.add(boardCopy);
     }
 
