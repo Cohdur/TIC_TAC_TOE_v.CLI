@@ -115,6 +115,7 @@ public class Game extends Player
         if(board[0][0] == B && board[0][0] == board[0][1] && board[0][1] == board[0][2])
         {
            won(B);
+            Game_Over = true;
         }
 
         if(board[1][0] == A && board[1][0] == board[1][1] && board[1][1] == board[1][2])
