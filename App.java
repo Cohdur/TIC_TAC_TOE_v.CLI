@@ -74,7 +74,8 @@ import java.io.IOException;
                 {
                     System.out.print("\nInvalid choice. Please enter Y or N: ");
                     menuChoice = in.nextLine();
-                    
+                    menuChoiceChar = menuChoice.charAt(0);
+                    menuChoiceChar = Character.toUpperCase(menuChoiceChar);  
                 }
                 if(menuChoiceChar == YES)
                 {
@@ -97,6 +98,8 @@ import java.io.IOException;
                     {
                         System.out.print("\nInvalid choice. Please enter Y or N: ");
                         menuChoice = in.nextLine();
+                        menuChoiceChar = menuChoice.charAt(0);
+                        menuChoiceChar = Character.toUpperCase(menuChoiceChar);
                         
                     }
 
