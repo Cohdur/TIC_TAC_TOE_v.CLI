@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import static java.lang.System.*;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -58,15 +57,14 @@ public class Game extends Player
         }
     }
 
-    void saveGameResult() 
-    {
-        
+    void saveGameResult() {
+        // Create a deep copy of the board
         char[][] boardCopy = new char[ROW][COL];
-        for (int i = 0; i < ROW; i++) 
-        {
+        for (int i = 0; i < ROW; i++) {
             System.arraycopy(board[i], 0, boardCopy[i], 0, COL);
         }
     
+        // Add the deep copy to the pastGames list
         pastGames.add(boardCopy);
     }
 
@@ -108,98 +106,98 @@ public class Game extends Player
 
         if(board[0][0] == A && board[0][0] == board[0][1] && board[0][1] == board[0][2])
         {
+            Game_Over = true;
             won(A);
+        }
+
+        else if(board[0][0] == B && board[0][0] == board[0][1] && board[0][1] == board[0][2])
+        {
             Game_Over = true;
-        }
-
-        if(board[0][0] == B && board[0][0] == board[0][1] && board[0][1] == board[0][2])
-        {
-           won(B);
-            Game_Over = true;
-        }
-
-        if(board[1][0] == A && board[1][0] == board[1][1] && board[1][1] == board[1][2])
-        {
-           won(A);
-           Game_Over = true;
-        }
-
-        if(board[1][0] == B && board[1][0] == board[1][1] && board[1][1] == board[1][2])
-        {
             won(B);
+        }
+
+        else if(board[1][0] == A && board[1][0] == board[1][1] && board[1][1] == board[1][2])
+        {
             Game_Over = true;
-        }
-
-        if(board[2][0] == A && board[2][0] == board[2][1] && board[2][1] == board[2][2])
-        {
-           won(A);
-           Game_Over = true;
-        }
-
-        if(board[2][0] == B && board[2][0] == board[2][1] && board[2][1] == board[2][2])
-        {
-           won(B);
-           Game_Over = true;
-        }
-
-        if(board[0][0] == A && board[0][0] == board[1][0] && board[1][0] == board[2][0])
-        {
             won(A);
-            Game_Over = true;
         }
 
-        if(board[0][0] == B && board[0][0] == board[1][0] && board[1][0] == board[2][0])
+        else if(board[1][0] == B && board[1][0] == board[1][1] && board[1][1] == board[1][2])
         {
+            Game_Over = true;
             won(B);
-            Game_Over = true;
         }
 
-        if(board[0][1] == A && board[0][1] == board[1][1] && board[1][1] == board[2][1])
+        else if(board[2][0] == A && board[2][0] == board[2][1] && board[2][1] == board[2][2])
         {
+            Game_Over = true;
             won(A);
-            Game_Over = true;
         }
 
-        if(board[0][1] == B && board[0][1] == board[1][1] && board[1][1] == board[2][1])
+        else if(board[2][0] == B && board[2][0] == board[2][1] && board[2][1] == board[2][2])
         {
+            Game_Over = true;
             won(B);
-            Game_Over = true;
         }
 
-        if(board[0][2] == A && board[0][2] == board[1][2] && board[1][2] == board[2][2])
+        else if(board[0][0] == A && board[0][0] == board[1][0] && board[1][0] == board[2][0])
         {
+            Game_Over = true;
             won(A);
-            Game_Over = true;
         }
 
-        if(board[0][2] == B && board[0][2] == board[1][2] && board[1][2] == board[2][2])
+        else if(board[0][0] == B && board[0][0] == board[1][0] && board[1][0] == board[2][0])
         {
+            Game_Over = true;
             won(B);
-            Game_Over = true;
         }
 
-        if(board[0][0] == A && board[0][0] == board[1][1] && board[1][1] == board[2][2])
+        else if(board[0][1] == A && board[0][1] == board[1][1] && board[1][1] == board[2][1])
         {
+            Game_Over = true;
             won(A);
-            Game_Over = true;
         }
 
-        if(board[0][0] == B && board[0][0] == board[1][1] && board[1][1] == board[2][2])
+        else if(board[0][1] == B && board[0][1] == board[1][1] && board[1][1] == board[2][1])
         {
+            Game_Over = true;
             won(B);
-            Game_Over = true;
         }
 
-        if(board[0][2] == A && board[0][2] == board[1][1] && board[1][1] == board[2][0])
+        else if(board[0][2] == A && board[0][2] == board[1][2] && board[1][2] == board[2][2])
         {
+            Game_Over = true;
             won(A);
-            Game_Over = true;
         }
 
-        if(board[0][2] == B && board[0][2] == board[1][1] && board[1][1] == board[2][0])
+        else if(board[0][2] == B && board[0][2] == board[1][2] && board[1][2] == board[2][2])
         {
-            won(B);
             Game_Over = true;
+            won(B);
+        }
+
+        else if(board[0][0] == A && board[0][0] == board[1][1] && board[1][1] == board[2][2])
+        {
+            Game_Over = true;
+            won(A);
+        }
+
+        else if(board[0][0] == B && board[0][0] == board[1][1] && board[1][1] == board[2][2])
+        {
+            Game_Over = true;
+            won(B);
+        }
+
+        else if(board[0][2] == A && board[0][2] == board[1][1] && board[1][1] == board[2][0])
+        {
+            Game_Over = true;
+            won(A);
+        }
+
+        else if(board[0][2] == B && board[0][2] == board[1][1] && board[1][1] == board[2][0])
+        {
+            Game_Over = true;
+            won(B);
         }
 
         else
@@ -209,13 +207,14 @@ public class Game extends Player
             {
                 for(var check2 : check)
                 {
-                    index++;
                     if(check2 == getSymbol_1() || check2 == getSymbol_2())
                     {
+                        index++;
                         if(index == 9)
                         {
                             won('\n');
                             Game_Over = true;
+                            
                         }
                     }
                     else if(check2 != getSymbol_1() && check2 != getSymbol_2())

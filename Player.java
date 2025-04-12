@@ -64,7 +64,7 @@ public class Player
         }
     }
     
-    //  Get functions
+    //  Getters
     final char getAssignWinner()
     {
         return assign_winner;
