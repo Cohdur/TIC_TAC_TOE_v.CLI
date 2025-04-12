@@ -100,7 +100,7 @@ import java.io.IOException;
                 {
                     game.outputResults();
                     game.resetBoard();
-                    game.write_to_file("C:\\Users\\Owner\\Desktop\\CS-CLASSES\\CSC 214\\TicTacToe_2\\Game_Results_Save.txt");
+                    game.write_to_file("Random.txt");
                     System.out.println("Game Results Saved to file.");
 
                     System.out.print("Do you want to see the past games? (Y/N): ");
