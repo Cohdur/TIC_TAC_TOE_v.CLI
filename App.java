@@ -64,16 +64,31 @@ import java.io.IOException;
 
             if(game.Game_Over == true)
             {
-                
                 System.out.print("\nDo you want to play again? (Y/N): ");
+
                 menuChoice = in.nextLine();
+                while(menuChoice.length() > 1)
+                {
+                    out.println("Only a single letter Y/y or N/n");
+                    menuChoice = in.nextLine();
+                }
+
                 menuChoiceChar = menuChoice.charAt(0);
                 menuChoiceChar = Character.toUpperCase(menuChoiceChar);
                 
                 while(menuChoiceChar != YES && menuChoiceChar != NO)
                 {
                     System.out.print("\nInvalid choice. Please enter Y or N: ");
+
                     menuChoice = in.nextLine();
+                    while(menuChoice.length() > 1)
+                    {
+                        out.println("Only a single letter Y/y or N/n");
+                        menuChoice = in.nextLine();
+                    }
+
+                    menuChoiceChar = menuChoice.charAt(0);
+                    menuChoiceChar = Character.toUpperCase(menuChoiceChar);
                     
                 }
                 if(menuChoiceChar == YES)
@@ -89,15 +104,31 @@ import java.io.IOException;
                     System.out.println("Game Results Saved to file.");
 
                     System.out.print("Do you want to see the past games? (Y/N): ");
+
                     menuChoice = in.nextLine();
+                    while(menuChoice.length() > 1)
+                    {
+                        out.println("Only a single letter Y/y or N/n");
+                        menuChoice = in.nextLine();
+                    }
+
                     menuChoiceChar = menuChoice.charAt(0);
                     menuChoiceChar = Character.toUpperCase(menuChoiceChar);
                     
                     while(menuChoiceChar != YES && menuChoiceChar != NO)
                     {
                         System.out.print("\nInvalid choice. Please enter Y or N: ");
+
                         menuChoice = in.nextLine();
-                        
+                        while(menuChoice.length() > 1)
+                        {
+                            out.println("Only a single letter Y/y or N/n");
+                            menuChoice = in.nextLine();
+                        }
+
+                        menuChoiceChar = menuChoice.charAt(0);
+                        menuChoiceChar = Character.toUpperCase(menuChoiceChar);
+
                     }
 
                     switch (menuChoiceChar) 
