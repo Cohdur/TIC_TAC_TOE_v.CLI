@@ -4,16 +4,23 @@ import java.io.IOException;
 
 public class Game extends Player
 {
-    protected ArrayList<char[][]> pastGames = new ArrayList<char[][]>(); // keep track of old boards??
+    protected ArrayList<char[][]> pastGames = new ArrayList<char[][]>(); 
 
     boolean Game_Over = false;
     boolean Starting_Player_Turn = true;
+
+    boolean CPU_Error = false;
 
     final int ROW = 3;
     final int COL = 3;
     
 
-    private char[][] board = new char[ROW][COL];
+    protected char[][] board = new char[ROW][COL];
+
+    final char[][] getBoard()
+    {
+        return board;
+    }
 
     /*
      * USED FOR TESTING PURPOSES ONLY
@@ -226,48 +233,74 @@ public class Game extends Player
         } 
     }
 
+    void assign_choice_CPU(char symbol,int choice)
+    {
+        for(var itr = 0; itr < ROW; itr++)
+        {
+            for(var itr2 = 0; itr2 < COL; itr2++)
+            {
+                if((board[itr][itr2] - '0') == choice )
+                {
+                    if(board[itr][itr2] == getSymbol_1() || board[itr][itr2] == getSymbol_2())
+                    {
+                        CPU_Error = true;
+                        break;
+                    }
+                    else
+                    {
+                        board[itr][itr2] = symbol;
+                        CPU_Error = false;
+                        Player_Has_Won();
+                    }
+                }
+                
+            }
+        }
+    }
+    
     void assignChoice(int choice)
     {
             for(var itr = 0; itr < ROW; itr++)
             {
                 for(var itr2 = 0; itr2 < COL; itr2++)
                 {
-                    if(board[itr][itr2] != getSymbol_1() && board[itr][itr2] != getSymbol_2())
-                    {
-                        if( (board[itr][itr2] - '0') == choice   && Starting_Player_Turn)
+                        if((board[itr][itr2] - '0') == choice )
                         {
-                            board[itr][itr2] = getSymbol_1();
-                            Player_Has_Won();
-                            Starting_Player_Turn = false;
-
-                            assign_start_player(getSymbol_2());
+                            if(board[itr][itr2] == getSymbol_1() || board[itr][itr2] == getSymbol_2())
+                            {
+                               CPU_Error = true;
+                               break;
+                            }
                             
-                            
-                            break;
-                        }
-                        else if((board[itr][itr2] - '0') == choice  && !Starting_Player_Turn)
-                        {
-                            board[itr][itr2] = getSymbol_2();
-                            Player_Has_Won();
-                            Starting_Player_Turn = true;
-
-                            assign_start_player(getSymbol_1());
-                        
-                            break;
-                        }
-                    }
-                    else if((board[itr][itr2] - '0') == choice )
-                    {
-                        if(board[itr][itr2] == getSymbol_1() || board[itr][itr2] == getSymbol_2())
-                        {
-                           System.out.println("Invalid Move! Try Again.");
-                           
-                           break;
+                            else if( board[itr][itr2] != getSymbol_1() && Starting_Player_Turn)
+                            {
+                                board[itr][itr2] = getSymbol_1();
+                                Player_Has_Won();
+                                Starting_Player_Turn = false;
+                                CPU_Error = false;
+                                assign_start_player(getSymbol_2());
+                                
+                                break;
+                            }
+                            else if(board[itr][itr2] != getSymbol_2() && !Starting_Player_Turn)
+                            {
+                                board[itr][itr2] = getSymbol_2();
+                                Player_Has_Won();
+                                Starting_Player_Turn = true;
+                                CPU_Error = false;
+                                assign_start_player(getSymbol_1());
+                                
+                                break;
+                            }
                         }
                     } 
-                }
             }
         
+    }
+
+    boolean getCPU_Error()
+    {
+        return CPU_Error;
     }
 
     void outPut()
