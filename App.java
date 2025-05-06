@@ -84,6 +84,8 @@ import java.io.IOException;
 
             if(game.Game_Over == true)
             {
+                game.outputResults();
+                out.println();
                 System.out.print("\nDo you want to play again? (Y/N): ");
 
                 menuChoice = in.nextLine();
@@ -120,7 +122,7 @@ import java.io.IOException;
                 {
                     game.outputResults();
                     game.resetBoard();
-                    game.write_to_file("C:\\Users\\Owner\\Desktop\\CS-CLASSES\\CSC 214\\TicTacToe_2\\Game_Results_Save.txt");
+                    game.write_to_file("Game_Results_Save.txt");
                     System.out.println("Game Results Saved to file.");
 
                     System.out.print("Do you want to see the past games? (Y/N): ");
@@ -222,20 +224,32 @@ import java.io.IOException;
                 out.println();
                 game.outPut();
                 choice = in.nextLine();
-                
             }
 
             try 
             {
                 int choice_INT = Integer.parseInt(choice);
                 game.assign_choice_CPU(game.getSymbol_1(),choice_INT);
-                game.set_CPU_Turn(true);
+                // How come this is not working? 
+                // the error should toggle to true if the player chooses a number that is already taken
+                if(game.getCPU_Error() == true) 
+                {
+                    out.println(game.getCPU_Error());
+                    game.set_CPU_Turn(false);
+                    choice = in.nextLine();
+                    choice_INT = Integer.parseInt(choice);
+                    game.assign_choice_CPU(game.getSymbol_1(),choice_INT);
+                }
+                
+                if(game.getCPU_Error() == false)
+                {
+                   game.set_CPU_Turn(true); 
+                }
             } 
             catch (NumberFormatException e) 
             {
                 System.out.println("Invalid input. Please enter a valid number.");
             }
-
             out.println();
             game.outPut();
         }//here 
@@ -264,6 +278,8 @@ import java.io.IOException;
 
             if(game.Game_Over == true)
             {
+                game.outputResults();
+                out.println();
                 System.out.print("\nDo you want to play again? (Y/N): ");
 
                 menuChoice = in.nextLine();
@@ -300,7 +316,7 @@ import java.io.IOException;
                 {
                     game.outputResults();
                     game.resetBoard();
-                    game.write_to_file("C:\\Users\\Owner\\Desktop\\CS-CLASSES\\CSC 214\\TicTacToe_2\\Game_Results_Save.txt");
+                    game.write_to_file("Game_Results_Save.txt");
                     System.out.println("Game Results Saved to file.");
 
                     System.out.print("Do you want to see the past games? (Y/N): ");
@@ -371,16 +387,17 @@ import java.io.IOException;
         game.set_CPU_Start(true);
         game.set_CPU_Turn(true);
         game.setCPUSymbol(game.getSymbol_1());
-        //CPU_Turn = true;
+        
         System.out.println("Welcome to Tic Tac Toe!");
         game.createBoard();
         game.outPut();
 
         do
         {
-            if(game.GetLossCount_1() > 0  || game.GetWinCount_1() > 0 && game.getAssignWinner() == game.getSymbol_2())
+            if(/*game.GetLossCount_1() > 0  || game.GetWinCount_1() > 0 &&*/ 
+            game.getAssignWinner() == game.getSymbol_1() )
             {
-                //game.set_CPU_Start(true); 
+                game.set_CPU_Start(true); 
                 game.assign_choice_CPU(game.getSymbol_1(),game.CPUmove());
                 out.println();
                 game.outPut();
@@ -441,6 +458,9 @@ import java.io.IOException;
 
             if(game.Game_Over == true)
             {
+                game.outputResults();
+                out.println();
+
                 System.out.print("\nDo you want to play again? (Y/N): ");
 
                 menuChoice = in.nextLine();
@@ -477,7 +497,7 @@ import java.io.IOException;
                 {
                     game.outputResults();
                     game.resetBoard();
-                    game.write_to_file("C:\\Users\\Owner\\Desktop\\CS-CLASSES\\CSC 214\\TicTacToe_2\\Game_Results_Save.txt");
+                    game.write_to_file("Game_Results_Save.txt");
                     System.out.println("Game Results Saved to file.");
 
                     System.out.print("Do you want to see the past games? (Y/N): ");

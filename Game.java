@@ -9,11 +9,10 @@ public class Game extends Player
     boolean Game_Over = false;
     boolean Starting_Player_Turn = true;
 
-    boolean CPU_Error = false;
+    boolean CPU_Error;
 
     final int ROW = 3;
-    final int COL = 3;
-    
+    final int COL = 3; 
 
     protected char[][] board = new char[ROW][COL];
 
@@ -251,11 +250,17 @@ public class Game extends Player
                         board[itr][itr2] = symbol;
                         CPU_Error = false;
                         Player_Has_Won();
+                        break;
                     }
                 }
                 
             }
         }
+    }
+
+    boolean getCheckCPU_Error()
+    {
+        return CPU_Error;
     }
     
     void assignChoice(int choice)
@@ -298,7 +303,7 @@ public class Game extends Player
         
     }
 
-    boolean getCPU_Error()
+    final boolean getCPU_Error()
     {
         return CPU_Error;
     }
