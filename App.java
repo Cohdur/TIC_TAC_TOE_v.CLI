@@ -190,9 +190,7 @@ import java.io.IOException;
 
         // Human vs CPU 
         case 2 : 
-        //game.set_CPU_Start(false); // initially set to false omit after testing proves to be true
         game.setCPUSymbol(game.getSymbol_2());
-
         game.set_CPU_Turn(false);
 
         System.out.println("Welcome to Tic Tac Toe!");
@@ -200,13 +198,16 @@ import java.io.IOException;
         game.outPut();
 
         do
-        { 
-            if(game.GetLossCount_1() > 0  || game.GetWinCount_1() > 0 && game.getAssignWinner() == game.getSymbol_1() )
+        {
+            int count = 0; 
+            if(count != 1 && game.getAssignWinner() == game.getSymbol_1() )
             {
                 game.set_CPU_Start(true); 
                 game.assign_choice_CPU(game.getSymbol_2(),game.CPUmove());
+                game.set_CPU_Turn(false);
                 out.println();
                 game.outPut();
+                count++;
             }
             
             
@@ -253,7 +254,7 @@ import java.io.IOException;
             out.println();
             game.outPut();
         }//here 
-        if(game.get_CPU_Turn() == true)
+        if(game.Game_Over == false && game.get_CPU_Turn() == true )
         {
             
             game.assign_choice_CPU(game.getSymbol_2(),game.CPUmove());
@@ -394,13 +395,15 @@ import java.io.IOException;
 
         do
         {
-            if(/*game.GetLossCount_1() > 0  || game.GetWinCount_1() > 0 &&*/ 
-            game.getAssignWinner() == game.getSymbol_1() )
+            int count = 0; // constrain the CPU to only play once at the start of the game
+            if( count != 1 && game.getAssignWinner() == game.getSymbol_2() )
             {
                 game.set_CPU_Start(true); 
                 game.assign_choice_CPU(game.getSymbol_1(),game.CPUmove());
+                game.set_CPU_Turn(false);
                 out.println();
                 game.outPut();
+                count++;
             }
 
             if(game.get_CPU_Turn() == false)
@@ -436,7 +439,7 @@ import java.io.IOException;
             out.println();
             game.outPut();
         }//here 
-        if(game.get_CPU_Turn() == true)
+        if(game.Game_Over == false && game.get_CPU_Turn() == true)
         
         {
             game.assign_choice_CPU(game.getSymbol_1(),game.CPUmove());

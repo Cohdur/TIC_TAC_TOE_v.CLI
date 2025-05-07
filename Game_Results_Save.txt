@@ -16,3 +16,13 @@ Player: o Won: 0 / Loss: 0
 Draw Count: 1
 
 
+Player: x Won: 2 / Loss: 0
+Player: o Won: 0 / Loss: 2
+Draw Count: 0
+
+
+Player: x Won: 1 / Loss: 2
+Player: o Won: 2 / Loss: 1
+Draw Count: 2
+
+
