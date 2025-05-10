@@ -9,7 +9,7 @@ public class Game extends Player
     boolean Game_Over = false;
     boolean Starting_Player_Turn = true;
 
-    boolean CPU_Error;
+    boolean CPU_Error = false;
 
     final int ROW = 3;
     final int COL = 3; 
@@ -247,8 +247,8 @@ public class Game extends Player
                     }
                     else
                     {
-                        board[itr][itr2] = symbol;
                         CPU_Error = false;
+                        board[itr][itr2] = symbol;
                         Player_Has_Won();
                         break;
                     }
@@ -273,7 +273,6 @@ public class Game extends Player
                         {
                             if(board[itr][itr2] == getSymbol_1() || board[itr][itr2] == getSymbol_2())
                             {
-                               CPU_Error = true;
                                break;
                             }
                             
@@ -282,7 +281,7 @@ public class Game extends Player
                                 board[itr][itr2] = getSymbol_1();
                                 Player_Has_Won();
                                 Starting_Player_Turn = false;
-                                CPU_Error = false;
+                                
                                 assign_start_player(getSymbol_2());
                                 
                                 break;
@@ -292,7 +291,7 @@ public class Game extends Player
                                 board[itr][itr2] = getSymbol_2();
                                 Player_Has_Won();
                                 Starting_Player_Turn = true;
-                                CPU_Error = false;
+                                
                                 assign_start_player(getSymbol_1());
                                 
                                 break;

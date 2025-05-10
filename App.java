@@ -27,7 +27,7 @@ import java.io.IOException;
         char menuChoiceChar;
         
         String game_mode_choice = in.nextLine();
-        while(game_mode_choice.length() > 1 || game_mode_choice.charAt(0) < '1' || game_mode_choice.charAt(0) > '3')
+        while( game_mode_choice.length() == 0 || game_mode_choice.length() > 1 || game_mode_choice.charAt(0) < '1' || game_mode_choice.charAt(0) > '3')
         {
             System.out.println("Invalid choice. Please enter 1 or 3.");
 
@@ -58,7 +58,7 @@ import java.io.IOException;
             }
 
             String choice = in.nextLine();
-            while(choice.length() > 1 || choice.charAt(0) < '1' || choice.charAt(0) > '9')
+            while(choice.length() == 0 || choice.length() > 1 || choice.charAt(0) < '1' || choice.charAt(0) > '9')
             {
                 System.out.println("Invalid choice. Please enter one number between 1 and 9.");
 
@@ -68,16 +68,11 @@ import java.io.IOException;
                 
             }
 
-            try 
-            {
+
                 int choice_INT = Integer.parseInt(choice);
                 game.assignChoice(choice_INT);
 
-            } 
-            catch (NumberFormatException e) 
-            {
-                System.out.println("Invalid input. Please enter a valid number.");
-            }
+
 
             out.println();
             game.outPut();
@@ -89,7 +84,7 @@ import java.io.IOException;
                 System.out.print("\nDo you want to play again? (Y/N): ");
 
                 menuChoice = in.nextLine();
-                while(menuChoice.length() > 1)
+                while(menuChoice.length() == 0 || menuChoice.length() > 1)
                 {
                     out.println("Only a single letter Y/y or N/n");
                     menuChoice = in.nextLine();
@@ -128,7 +123,7 @@ import java.io.IOException;
                     System.out.print("Do you want to see the past games? (Y/N): ");
 
                     menuChoice = in.nextLine();
-                    while(menuChoice.length() > 1)
+                    while(menuChoice.length() == 0 || menuChoice.length() > 1)
                     {
                         out.println("Only a single letter Y/y or N/n");
                         menuChoice = in.nextLine();
@@ -142,7 +137,7 @@ import java.io.IOException;
                         System.out.print("\nInvalid choice. Please enter Y or N: ");
 
                         menuChoice = in.nextLine();
-                        while(menuChoice.length() > 1)
+                        while(menuChoice.length() == 0 || menuChoice.length() > 1)
                         {
                             out.println("Only a single letter Y/y or N/n");
                             menuChoice = in.nextLine();
@@ -196,29 +191,30 @@ import java.io.IOException;
         System.out.println("Welcome to Tic Tac Toe!");
         game.createBoard();
         game.outPut();
+        int count = 0; 
 
         do
         {
-            int count = 0; 
-            if(count != 1 && game.getAssignWinner() == game.getSymbol_1() )
+            if(count == 1 && game.getAssignWinner() == game.getSymbol_1() )
             {
                 game.set_CPU_Start(true); 
                 game.assign_choice_CPU(game.getSymbol_2(),game.CPUmove());
                 game.set_CPU_Turn(false);
                 out.println();
                 game.outPut();
-                count++;
+                //count++;
             }
             
             
             
             if(game.get_CPU_Turn() == false)
             {
-
+            count = 0;
             System.out.printf("Player %c, Enter choice (1-9): ", game.getSymbol_1());
+;
             String choice = in.nextLine();
-
-            while(choice.length() > 1 || choice.charAt(0) < '1' || choice.charAt(0) > '9')
+            
+            while(choice.length() == 0 || choice.length() > 1 || choice.charAt(0) < '1' || choice.charAt(0) > '9')
             {
                 System.out.println("Invalid choice. Please enter one number between 1 and 9.");
 
@@ -227,36 +223,18 @@ import java.io.IOException;
                 choice = in.nextLine();
             }
 
-            try 
-            {
-                int choice_INT = Integer.parseInt(choice);
-                game.assign_choice_CPU(game.getSymbol_1(),choice_INT);
-                // How come this is not working? 
-                // the error should toggle to true if the player chooses a number that is already taken
-                if(game.getCPU_Error() == true) 
-                {
-                    out.println(game.getCPU_Error());
-                    game.set_CPU_Turn(false);
-                    choice = in.nextLine();
-                    choice_INT = Integer.parseInt(choice);
-                    game.assign_choice_CPU(game.getSymbol_1(),choice_INT);
-                }
-                
-                if(game.getCPU_Error() == false)
-                {
-                   game.set_CPU_Turn(true); 
-                }
-            } 
-            catch (NumberFormatException e) 
-            {
-                System.out.println("Invalid input. Please enter a valid number.");
-            }
+            int choice_INT = Integer.parseInt(choice);
+            game.assign_choice_CPU(game.getSymbol_1(),choice_INT);
+            game.set_CPU_Turn(true); 
+
+
             out.println();
             game.outPut();
+
         }//here 
+
         if(game.Game_Over == false && game.get_CPU_Turn() == true )
         {
-            
             game.assign_choice_CPU(game.getSymbol_2(),game.CPUmove());
             while(game.getCPU_Error() == true) 
             {
@@ -284,7 +262,7 @@ import java.io.IOException;
                 System.out.print("\nDo you want to play again? (Y/N): ");
 
                 menuChoice = in.nextLine();
-                while(menuChoice.length() > 1)
+                while(menuChoice.length() == 0 || menuChoice.length() > 1)
                 {
                     out.println("Only a single letter Y/y or N/n");
                     menuChoice = in.nextLine();
@@ -298,7 +276,7 @@ import java.io.IOException;
                     System.out.print("\nInvalid choice. Please enter Y or N: ");
 
                     menuChoice = in.nextLine();
-                    while(menuChoice.length() > 1)
+                    while(menuChoice.length() == 0 || menuChoice.length() > 1)
                     {
                         out.println("Only a single letter Y/y or N/n");
                         menuChoice = in.nextLine();
@@ -310,6 +288,7 @@ import java.io.IOException;
                 }
                 if(menuChoiceChar == YES)
                 {
+                    count++;
                     game.resetBoard();
                     game.outPut();
                 }
@@ -323,7 +302,7 @@ import java.io.IOException;
                     System.out.print("Do you want to see the past games? (Y/N): ");
 
                     menuChoice = in.nextLine();
-                    while(menuChoice.length() > 1)
+                    while(menuChoice.length() == 0 || menuChoice.length() > 1)
                     {
                         out.println("Only a single letter Y/y or N/n");
                         menuChoice = in.nextLine();
@@ -337,7 +316,7 @@ import java.io.IOException;
                         System.out.print("\nInvalid choice. Please enter Y or N: ");
 
                         menuChoice = in.nextLine();
-                        while(menuChoice.length() > 1)
+                        while(menuChoice.length() == 0 || menuChoice.length() > 1)
                         {
                             out.println("Only a single letter Y/y or N/n");
                             menuChoice = in.nextLine();
@@ -392,62 +371,52 @@ import java.io.IOException;
         System.out.println("Welcome to Tic Tac Toe!");
         game.createBoard();
         game.outPut();
+        count = 0; // constrain the CPU to only play once at the start of the game
 
         do
         {
-            int count = 0; // constrain the CPU to only play once at the start of the game
-            if( count != 1 && game.getAssignWinner() == game.getSymbol_2() )
+            if( count == 1 && game.getAssignWinner() == game.getSymbol_2() )
             {
                 game.set_CPU_Start(true); 
                 game.assign_choice_CPU(game.getSymbol_1(),game.CPUmove());
-                game.set_CPU_Turn(false);
+                game.set_CPU_Turn(false); 
                 out.println();
                 game.outPut();
-                count++;
             }
 
             if(game.get_CPU_Turn() == false)
             {
-
+            count = 0;
             System.out.printf("Player %c, Enter choice (1-9): ", game.getSymbol_2());
+
             String choice = in.nextLine();
-            while(choice.length() > 1 || choice.charAt(0) < '1' || choice.charAt(0) > '9')
+
+            while(choice.length() == 0 || choice.length() > 1 || choice.charAt(0) < '1' || choice.charAt(0) > '9')
             {
                 System.out.println("Invalid choice. Please enter one number between 1 and 9.");
-                if(!(choice.length() > 1) && !(choice.charAt(0) < '1') || !(choice.charAt(0) > '9'))
-                {
-                    break;
-                }
+                
                 out.println();
                 game.outPut();
                 
                 choice = in.nextLine();
                 
             }
-
-            try 
-            {
                 int choice_INT = Integer.parseInt(choice);
                 game.assign_choice_CPU(game.getSymbol_2(),choice_INT);
                 game.set_CPU_Turn(true);
-            } 
-            catch (NumberFormatException e) 
-            {
-                System.out.println("Invalid input. Please enter a valid number.");
-            }
+
 
             out.println();
             game.outPut();
         }//here 
         if(game.Game_Over == false && game.get_CPU_Turn() == true)
-        
         {
             game.assign_choice_CPU(game.getSymbol_1(),game.CPUmove());
             while(game.getCPU_Error() == true) // check while instead of if
             {
                 game.assign_choice_CPU(game.getSymbol_1(),game.CPUmove());
                 /*
-                 * 
+
                  if((game.getCPU_Error() == false))
                  {
                     break; //optional 
@@ -467,7 +436,7 @@ import java.io.IOException;
                 System.out.print("\nDo you want to play again? (Y/N): ");
 
                 menuChoice = in.nextLine();
-                while(menuChoice.length() > 1)
+                while(menuChoice.length() == 0 || menuChoice.length() > 1)
                 {
                     out.println("Only a single letter Y/y or N/n");
                     menuChoice = in.nextLine();
@@ -492,7 +461,8 @@ import java.io.IOException;
                     
                 }
                 if(menuChoiceChar == YES)
-                {
+                {   
+                    count++;
                     game.resetBoard();
                     game.outPut();
                 }
@@ -520,7 +490,7 @@ import java.io.IOException;
                         System.out.print("\nInvalid choice. Please enter Y or N: ");
 
                         menuChoice = in.nextLine();
-                        while(menuChoice.length() > 1)
+                        while(menuChoice.length() == 0 || menuChoice.length() > 1)
                         {
                             out.println("Only a single letter Y/y or N/n");
                             menuChoice = in.nextLine();
@@ -570,7 +540,7 @@ import java.io.IOException;
 
     }//switch end 
 
-    } 
+    } // main end
 }
 
 
