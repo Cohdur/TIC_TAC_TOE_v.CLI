@@ -157,9 +157,9 @@ import java.io.IOException;
                             System.out.println("\nPast games:\n\n");
                             for(var out : game.pastGames)
                             {
-                                for(var i = 0; i < ROW/*game.ROW */; i++)
+                                for(var i = 0; i < ROW; i++)
                                 {
-                                    for(var j = 0; j < COL/*game.COL */; j++)
+                                    for(var j = 0; j < COL; j++)
                                     {
                                         System.out.print(out[i][j] + " ");
                                     }
@@ -202,16 +202,14 @@ import java.io.IOException;
                 game.set_CPU_Turn(false);
                 out.println();
                 game.outPut();
-                //count++;
             }
-            
             
             
             if(game.get_CPU_Turn() == false)
             {
             count = 0;
             System.out.printf("Player %c, Enter choice (1-9): ", game.getSymbol_1());
-;
+
             String choice = in.nextLine();
             
             while(choice.length() == 0 || choice.length() > 1 || choice.charAt(0) < '1' || choice.charAt(0) > '9')
@@ -236,23 +234,15 @@ import java.io.IOException;
         if(game.Game_Over == false && game.get_CPU_Turn() == true )
         {
             game.assign_choice_CPU(game.getSymbol_2(),game.CPUmove());
+            
             while(game.getCPU_Error() == true) 
             {
                 game.assign_choice_CPU(game.getSymbol_2(),game.CPUmove());
-                /*
-                 * 
-                 if(game.getCPU_Error() == false)
-                 {
-                    break;
-                }
-                */ //uneseccary
-                
             }
 
             out.println();
             game.outPut();
             game.set_CPU_Start(false);
-          
         }
 
             if(game.Game_Over == true)

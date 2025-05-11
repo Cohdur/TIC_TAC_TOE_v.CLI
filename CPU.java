@@ -63,6 +63,14 @@ public class CPU extends Game
         }
         
     }
+    char getCPUSymbol()
+    {
+        return CPU_symbol;
+    }
+    char getOtherSymbol()
+    {
+        return other_symbol;
+    }
     
 // add moves that catch end with a missing middle for counter / win 
     int CPUmove()
