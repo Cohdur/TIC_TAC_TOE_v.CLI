@@ -222,6 +222,7 @@ import java.io.IOException;
             }
 
             int choice_INT = Integer.parseInt(choice);
+            
             game.assign_choice_CPU(game.getSymbol_1(),choice_INT);
             game.set_CPU_Turn(true); 
 
@@ -466,7 +467,7 @@ import java.io.IOException;
                     System.out.print("Do you want to see the past games? (Y/N): ");
 
                     menuChoice = in.nextLine();
-                    while(menuChoice.length() > 1)
+                    while(menuChoice.length() == 0 || menuChoice.length() > 1)
                     {
                         out.println("Only a single letter Y/y or N/n");
                         menuChoice = in.nextLine();

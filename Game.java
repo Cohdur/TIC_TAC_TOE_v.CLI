@@ -4,7 +4,8 @@ import java.io.IOException;
 
 public class Game extends Player
 {
-    protected ArrayList<char[][]> pastGames = new ArrayList<char[][]>(); 
+    protected ArrayList<char[][]> pastGames = new ArrayList<char[][]>();
+     
 
     boolean Game_Over = false;
     boolean Starting_Player_Turn = true;
@@ -243,6 +244,7 @@ public class Game extends Player
                     if(board[itr][itr2] == getSymbol_1() || board[itr][itr2] == getSymbol_2())
                     {
                         CPU_Error = true;
+                       
                         break;
                     }
                     else
@@ -250,12 +252,14 @@ public class Game extends Player
                         CPU_Error = false;
                         board[itr][itr2] = symbol;
                         Player_Has_Won();
+                        
                         break;
                     }
                 }
                 
             }
         }
+       
     }
 
     boolean getCheckCPU_Error()

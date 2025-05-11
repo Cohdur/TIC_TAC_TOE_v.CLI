@@ -36,3 +36,8 @@ Player: o Won: 0 / Loss: 2
 Draw Count: 0
 
 
+Player: x Won: 1 / Loss: 1
+Player: o Won: 1 / Loss: 1
+Draw Count: 1
+
+

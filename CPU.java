@@ -76,6 +76,10 @@ public class CPU extends Game
     int CPUmove()
     {
         fetchBoard();
+        if(CPU_Error == true)
+        {
+            return 0; // testing 
+        }
         
         if(CPU_Start == true)
         {
@@ -99,8 +103,7 @@ public class CPU extends Game
                 }
             }
         }
-        //if(CPU_Turn == false) // 
-        //{
+
             if(board[1][1] != CPU_symbol && board[1][1] != other_symbol)
             {
                 CPU_Turn = false;
@@ -338,8 +341,6 @@ public class CPU extends Game
                 return 7;
             }
 
-            //int randomInt = random.nextInt(9) + 1;
-            //int randomInt;
             outer :
             {
                 for (int row = 0; row < board.length; row++) {
@@ -352,10 +353,7 @@ public class CPU extends Game
                     }
                 }
             }
-            //CPU_Turn = false;
             return randomInt;
-            
-        //}
             
     }
 
